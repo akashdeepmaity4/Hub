@@ -1,0 +1,340 @@
+body {
+    background-color: #000000;
+    font-family: 'Share Tech Mono', 'Consolas', 'Courier New', monospace;
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+    letter-spacing: 0.05em;
+    cursor: crosshair;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Heads up diagnostic text styling */
+h1 {
+    color: #00f0ff;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+    text-transform: uppercase;
+}
+
+p {
+    color: #00bcff;
+    font-size: 1.1em;
+    text-shadow: 0 0 4px rgba(0, 188, 255, 0.3);
+}
+
+.mainarea-parent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    opacity: 1;
+    background: radial-gradient(circle at center, rgba(0, 42, 51, 0.15) 0%, #000000 70%);
+}
+
+/* Center 50% — 3D canvas view */
+.mainarea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background: none;
+    width: 50%;
+    position: relative;
+}
+
+#mainarea-3d {
+    width: 100%;
+    height: 100%;
+}
+
+#mainarea-3d canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    /* Simulates projection filter over the webgl engine canvas */
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.2));
+}
+
+/* Shared 25% panel container constraints */
+.mainarea-left,
+.mainarea-right {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+    padding: 16px;
+    opacity: 1;
+}
+
+/* ===== LEFT PANEL (Transformed from light to glowing HUD Terminal) ===== */
+.mainarea-left-terminal {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-radius: 4px;
+    /* More angular tech feel */
+    overflow: hidden;
+    background-color: rgba(0, 15, 25, 0.4);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.1), inset 0 0 15px rgba(0, 240, 255, 0.05);
+}
+
+.mainarea-left-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 14px;
+    flex-shrink: 0;
+    background-color: rgba(0, 30, 45, 0.7);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.mainarea-left-title {
+    margin-left: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #00f0ff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+}
+
+.mainarea-left-search {
+    padding: 12px;
+    flex-shrink: 0;
+    background-color: rgba(0, 10, 15, 0.3);
+}
+
+.mainarea-left-search input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid rgba(0, 188, 255, 0.3);
+    border-radius: 4px;
+    font-size: 0.85em;
+    outline: none;
+    font-family: inherit;
+    background-color: rgba(0, 5, 10, 0.8);
+    color: #00ffcc;
+    text-shadow: 0 0 4px rgba(0, 255, 204, 0.5);
+    transition: all 0.2s ease;
+}
+
+.mainarea-left-search input:focus {
+    border-color: #00ffcc;
+    background-color: rgba(0, 15, 20, 0.9);
+    box-shadow: 0 0 12px rgba(0, 255, 204, 0.3);
+}
+
+.mainarea-left-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.mainarea-left-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    margin-bottom: 4px;
+}
+
+.mainarea-left-item:hover {
+    background-color: rgba(0, 240, 255, 0.08);
+    border-color: rgba(0, 240, 255, 0.3);
+}
+
+.mainarea-left-item:active {
+    transform: scale(0.98);
+}
+
+/* Active targeting index selection row */
+.mainarea-left-item.selected {
+    background-color: rgba(0, 255, 204, 0.12);
+    border-color: rgba(0, 255, 204, 0.6);
+    box-shadow: 0 0 8px rgba(0, 255, 204, 0.2);
+}
+
+.mainarea-left-item-icon {
+    font-size: 1.1em;
+    flex-shrink: 0;
+    color: #00ffcc;
+}
+
+.mainarea-left-item-label {
+    font-size: 0.85em;
+    color: #00bcff;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.mainarea-left-item.selected .mainarea-left-item-label {
+    color: #00ffcc;
+    text-shadow: 0 0 4px rgba(0, 255, 204, 0.4);
+}
+
+/* ===== RIGHT PANEL (Dark Matrix HUD Grid) ===== */
+.mainarea-right-terminal {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: rgba(0, 15, 25, 0.4);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.1), inset 0 0 15px rgba(0, 240, 255, 0.05);
+}
+
+.mainarea-right-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 40px;
+    padding: 0 14px;
+    flex-shrink: 0;
+    background-color: rgba(0, 30, 45, 0.7);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+/* Warning node blinking dot decoration */
+.mainarea-right-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: #ff3366 !important;
+    box-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366;
+    animation: hudPulse 1.5s infinite ease-in-out;
+}
+
+.mainarea-right-title {
+    margin-left: 10px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #00f0ff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+}
+
+.mainarea-right-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 16px;
+    overflow-y: auto;
+    background-color: rgba(0, 5, 10, 0.2);
+}
+
+.mainarea-right-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 8px;
+    border: 1px solid rgba(0, 188, 255, 0.25);
+    border-radius: 4px;
+    background-color: rgba(0, 20, 30, 0.6);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+}
+
+.mainarea-right-tile:hover {
+    background-color: rgba(0, 40, 60, 0.5);
+    border-color: #00ffcc;
+    box-shadow: 0 0 12px rgba(0, 255, 204, 0.2);
+    transform: translateY(-1px);
+}
+
+.mainarea-right-tile:active {
+    transform: scale(0.96);
+}
+
+/* High energy additive burst animation state when fired */
+.mainarea-right-tile.fired {
+    background-color: rgba(0, 255, 204, 0.3) !important;
+    border-color: #00ffcc !important;
+    box-shadow: 0 0 25px rgba(0, 255, 204, 0.7);
+}
+
+.mainarea-right-tile-icon {
+    font-size: 1.5em;
+    color: #00f0ff;
+    filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.5));
+    transition: color 0.15s ease;
+}
+
+.mainarea-right-tile:hover .mainarea-right-tile-icon {
+    color: #00ffcc;
+    filter: drop-shadow(0 0 6px rgba(0, 255, 204, 0.7));
+}
+
+.mainarea-right-tile-label {
+    font-size: 0.75em;
+    color: #00bcff;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.mainarea-right-tile:hover .mainarea-right-tile-label {
+    color: #ffffff;
+}
+
+/* Cybernetic Webkit Scrollbar elements styling */
+.mainarea-left-list::-webkit-scrollbar,
+.mainarea-right-grid::-webkit-scrollbar {
+    width: 4px;
+}
+
+.mainarea-left-list::-webkit-scrollbar-track,
+.mainarea-right-grid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.mainarea-left-list::-webkit-scrollbar-thumb {
+    background: rgba(0, 188, 255, 0.3);
+    border-radius: 2px;
+}
+
+.mainarea-right-grid::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 204, 0.3);
+    border-radius: 2px;
+}
+
+.mainarea-left-list::-webkit-scrollbar-thumb:hover,
+.mainarea-right-grid::-webkit-scrollbar-thumb:hover {
+    background: #00f0ff;
+}
+
+/* Structural Animation Loops */
+@keyframes hudPulse {
+    0% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.4;
+    }
+}

@@ -1,0 +1,4 @@
+PIL                       # Image processing library
+pywebview                 # Uses default OS webview to simulate PWA natively
+flask                     # Framework to make Webapps
+pyinstaller               # Packages Python code into an executable application

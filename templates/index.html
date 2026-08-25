@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="mainarea-parent">
+        <div class="mainarea-left">
+            <div class="mainarea-left-terminal">
+                <div class="mainarea-left-header">
+                    <span class="mainarea-left-dot"></span>
+                    <span class="mainarea-left-dot"></span>
+                    <span class="mainarea-left-dot"></span>
+                    <span class="mainarea-left-dot"></span>
+                    <span class="mainarea-right-dot"></span>
+                    <span class="mainarea-left-title">
+                        YOUR TOOLS</span>
+                </div>
+                <div class="mainarea-left-search">
+                    <input type="text" id="mainarea-left-search-input" placeholder="Search commands..."
+                        autocomplete="off">
+                </div>
+                <div class="mainarea-left-list" id="mainarea-left-list">
+                    <div class="mainarea-left-item" data-cmd="system-status">
+                        <span class="mainarea-left-item-icon">📊</span>
+                        <span class="mainarea-left-item-label">Stock Market</span>
+                    </div>
+                    <div class="mainarea-left-item" data-cmd="network-scan">
+                        <span class="mainarea-left-item-icon">🩺</span>
+                        <span class="mainarea-left-item-label">System Status</span>
+                    </div>
+                    <div class="mainarea-left-item" data-cmd="file-explorer">
+                        <span class="mainarea-left-item-icon">📁</span>
+                        <span class="mainarea-left-item-label">Your Computer</span>
+                    </div>
+                    <div class="mainarea-left-item" data-cmd="process-manager">
+                        <span class="mainarea-left-item-icon">⚙️</span>
+                        <span class="mainarea-left-item-label">Hub Settings</span>
+                    </div>
+                    <div class="mainarea-left-item" data-cmd="terminal-session">
+                        <span class="mainarea-left-item-icon">💻</span>
+                        <span class="mainarea-left-item-label">Open terminal</span>
+                    </div>
+                    <div class="mainarea-left-item" data-cmd="logs-viewer">
+                        <span class="mainarea-left-item-icon">📜</span>
+                        <span class="mainarea-left-item-label">Blackbox</span>
+                    </div>
+                    <div class="mainarea-left-item" data-cmd="settings">
+                        <span class="mainarea-left-item-icon">🔧</span>
+                        <span class="mainarea-left-item-label">Device Settings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CENTER: 3D canvas -->
+        <div class="mainarea">
+            <div id="mainarea-3d"></div>
+        </div>
+
+        <!-- RIGHT PANEL: dark terminal-style action grid -->
+        <div class="mainarea-right">
+            <div class="mainarea-right-terminal">
+                <div class="mainarea-right-header">
+                    <span class="mainarea-right-dot"></span>
+                    <span class="mainarea-right-dot"></span>
+                    <span class="mainarea-right-dot"></span>
+                    <span class="mainarea-right-title">APPLICATIONS</span>
+                </div>
+                <div class="mainarea-right-grid" id="mainarea-right-grid">
+                    <button class="mainarea-right-tile" data-action="deploy">
+                        <span class="mainarea-right-tile-icon">
+                            <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"
+                                shape-rendering="geometricPrecision">
+                                <path
+                                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                            </svg>
+
+                        </span>
+                        <span class="mainarea-right-tile-label">Github</span>
+                    </button>
+                    <button class="mainarea-right-tile" data-action="build">
+                        <span class="mainarea-right-tile-icon"><svg xmlns="http://w3.org" viewBox="0 0 24 24" width="20"
+                                height="20" fill="currentColor" shape-rendering="geometricPrecision">
+                                <path
+                                    d="M13.483 0a1.374 1.374 0 0 0-.961.411l-9.12 9.119a1.37 1.37 0 0 0-.006 1.936l1.137 1.137a1.37 1.37 0 0 0 1.937-.006l8.034-8.034a.274.274 0 0 1 .388 0l1.137 1.137a.274.274 0 0 1 0 .388l-8.034 8.034a1.37 1.37 0 0 0-.006 1.937l1.137 1.137a1.37 1.37 0 0 0 1.937-.006l9.12-9.12A1.375 1.375 0 0 0 24 6.845a1.375 1.375 0 0 0-1.375-1.375h-7.182V1.375A1.375 1.375 0 0 0 14.068 0h-.585zM1.375 12.359a1.375 1.375 0 0 0-1.375 1.375v2.75a1.375 1.375 0 0 0 1.375 1.375h14.47l-1.375-1.375a1.375 1.375 0 0 1 0-1.937l1.375-1.375a1.375 1.375 0 0 1 1.937 0l1.375 1.375H22.625a1.375 1.375 0 0 0 1.375-1.375v-2.75a1.375 1.375 0 0 0-1.375-1.375H1.375z" />
+                            </svg>
+                        </span>
+                        <span class="mainarea-right-tile-label">Leetcode</span>
+                    </button>
+                    <button class="mainarea-right-tile" data-action="test">
+                        <span class="mainarea-right-tile-icon"><svg xmlns="http://w3.org" viewBox="0 0 24 24" width="20"
+                                height="20" fill="currentColor" shape-rendering="geometricPrecision">
+                                <path
+                                    d="M10 2a8 8 0 1 0 5.13 14.19l5.46 5.46a1 1 0 0 0 1.41-1.41l-5.46-5.46A8 8 0 0 0 10 2zm0 2a6 6 0 1 1-6 6 6 6 0 0 1 6-6z" />
+                            </svg>
+                        </span>
+                        <span class="mainarea-right-tile-label">VeritasCode</span>
+                    </button>
+                    <button class="mainarea-right-tile" data-action="scan">
+                        <span class="mainarea-right-tile-icon"><svg xmlns="http://w3.org" viewBox="0 0 24 24" width="20"
+                                height="20" fill="currentColor" shape-rendering="geometricPrecision">
+                                <path
+                                    d="M23.15 2.58a1.69 1.69 0 0 0-1.63.07L13.7 7.42 5.16.5A1.33 1.33 0 0 0 3.3.73L.36 4.38a1.35 1.35 0 0 0 .15 1.83L5.3 10.4 1 13.84a1.35 1.35 0 0 0-.15 1.83l2.94 3.65a1.32 1.32 0 0 0 1.87.23l8.53-6.9 7.82 4.77a1.69 1.69 0 0 0 2.52-1.47V4.05a1.69 1.69 0 0 0-.88-1.47zM18 16.64l-5.12-3.12 5.12-3.12zm-12.77.34L3 14.34l3.12-2.52 2.11 1.7zm0-9.92L8.23 8.8 6.12 10.5 3 8l2.23-2.66zM18 7.36v6.24l-5.12-3.12z" />
+                            </svg>
+
+                        </span>
+                        <span class="mainarea-right-tile-label">VS Code</span>
+                    </button>
+                    <button class="mainarea-right-tile" data-action="sync">
+                        <span class="mainarea-right-tile-icon"><svg xmlns="http://w3.org" viewBox="0 0 24 24" width="20"
+                                height="20" fill="currentColor" shape-rendering="geometricPrecision">
+                                <path
+                                    d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.516 0-9.387.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.503 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.386.507 9.386.507s7.518 0 9.39-.507a3.003 3.003 0 0 0 2.109-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </span>
+                        <span class="mainarea-right-tile-label">Youtube</span>
+                    </button>
+                    <button class="mainarea-right-tile" data-action="backup">
+                        <span class="mainarea-right-tile-icon"><svg xmlns="http://w3.org" viewBox="0 0 24 24" width="20"
+                                height="20" fill="currentColor" shape-rendering="geometricPrecision">
+                                <path
+                                    d="M12 0a12 12 0 0 0-10.36 6l5.12 8.87A6 6 0 0 1 12 6h10.42A12 12 0 0 0 12 0zm-1.15 14.88l-5.12-8.87A12 12 0 0 0 1.22 17.1l5.2 9a6 6 0 0 1-1.37-3.8A7.41 7.41 0 0 1 10.85 14.88zM22.21 8a6 6 0 0 1-5.74 6.91l-5.18 9A12 12 0 0 0 24 12a11.9 11.9 0 0 0-1.79-4zM12 9a3 3 0 1 0 3 3 3 3 0 0 0-3-3z" />
+                            </svg>
+                        </span>
+                        <span class="mainarea-right-tile-label">Browser</span>
+                    </button>
+                    <button class="mainarea-right-tile" data-action="lock">
+                        <span class="mainarea-right-tile-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" width="20" height="20" fill="currentColor"
+                                shape-rendering="geometricPrecision">
+                                <path
+                                    d="M12 0c.143 4.96 1.486 8.354 5.366 11.517l.384.31a1.2 1.2 0 0 1 0 1.346l-.384.31C13.486 15.646 12.143 19.04 12 24c-.143-4.96-1.486-8.354-5.366-11.517l-.384-.31a1.2 1.2 0 0 1 0-1.346l./384-.31C10.514 8.354 11.857 4.96 12 0z" />
+                            </svg>
+                        </span>
+                        <span class="mainarea-right-tile-label">GeminiAI</span>
+                    </button>
+                    <button class="mainarea-right-tile" data-action="power">
+                        <span class="mainarea-right-tile-icon"><svg xmlns="http://w3.org" viewBox="0 0 24 24" width="20"
+                                height="20" fill="currentColor" shape-rendering="geometricPrecision">
+                                <path
+                                    d="M22.23 0H1.77C.8 0 0 .77 0 1.72v20.56C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.72V1.72C24 .77 23.2 0 22.23 0zM7.12 20.45H3.56V9h3.56v11.45zM5.34 7.43a2.06 2.06 0 1 1 .01-4.11 2.06 2.06 0 0 1-.01 4.11zm15.11 13.02h-3.56v-5.6c0-1.34-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.7h-3.56V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29z" />
+                            </svg>
+
+                        </span>
+                        <span class="mainarea-right-tile-label">LinkedIn</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
