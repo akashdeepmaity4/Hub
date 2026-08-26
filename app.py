@@ -1,5 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 import os
+import subprocess
+import sys
+import webview
 
 app = Flask(__name__)
 
@@ -10,12 +13,6 @@ def main():
 @app.route('/assets/<path:filename>')
 def serve_asset(filename):
     return send_from_directory(os.path.join(app.root_path, 'assets'), filename)
-
-
-
-
-
-
 
 
 if __name__ == '__main__':

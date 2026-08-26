@@ -1,9 +1,14 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
-/* ===== STARK HUD: FAINT FLASHLIGHT CURSOR HOVER EFFECT ===== */
+
+
+
+
+
+
+
 (function setupHUDFlashlight() {
-    // 1. Create a full-screen overlay for the flashlight beam
     const overlay = document.createElement('div');
     overlay.style.position = 'fixed';
     overlay.style.top = '0';
