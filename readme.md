@@ -7,6 +7,8 @@
 ![Flask](https://img.shields.io/badge/flask-%3b1ea7.svg?style=for-the-badge&logo=flask&logoColor=white) 
 
 ## Description
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
 
 HUB is a simple GUI for some of the most commonly used free well-known websites and apps i use.
 
@@ -21,8 +23,3 @@ HUB is a simple GUI for some of the most commonly used free well-known websites 
 - mainarea-bottom - This is a text box which directly connects with an AI, whether it is a Local Model or a Remote Model connected via an API. 
 
 - mainarea-leftbottom - This is a text box at the bottom of 'mainarea-left' which acts as a wrapper for your selected type of terminal (Bash,CMD,Powershell,WSL,Git Bash,etc.) 
-
-
-
-![License](https://img.shields.io/badge/license-MIT-blue)
-![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
