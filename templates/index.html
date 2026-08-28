@@ -49,12 +49,12 @@
                         <span class="mainarea-left-item-icon">📁</span>
                         <span class="mainarea-left-item-label">Your Computer</span>
                     </div>
-
-                    <div class="mainarea-left-item" data-cmd="hub-config">
-                        <span class="mainarea-left-item-icon">⚙️</span>
-                        <span class="mainarea-left-item-label">Hub Settings</span>
-                    </div>
-
+                    <a href="{{ url_for('hubconfig') }}" style="text-decoration: none; color: inherit;">
+                        <div class="mainarea-left-item" data-cmd="hub-config">
+                            <span class="mainarea-left-item-icon">⚙️</span>
+                            <span class="mainarea-left-item-label">Hub Settings</span>
+                        </div>
+                    </a>
                     <div class="mainarea-left-item" data-cmd="bash-or-cmd">
                         <span class="mainarea-left-item-icon">💻</span>
                         <span class="mainarea-left-item-label">Open terminal</span>

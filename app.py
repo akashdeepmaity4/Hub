@@ -10,9 +10,17 @@ app = Flask(__name__)
 def main():
     return render_template("index.html")
 
+@app.route('/hubconfig')
+@app.route('/hubconfig.html')
+def hubconfig():
+    return render_template("hubconfig.html")
+
 @app.route('/assets/<path:filename>')
 def serve_asset(filename):
     return send_from_directory(os.path.join(app.root_path, 'assets'), filename)
+
+
+
 
 
 if __name__ == '__main__':

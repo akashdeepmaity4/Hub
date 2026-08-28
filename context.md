@@ -6,11 +6,24 @@ This document is to be treated as the final truth about this project.
 
 ![homescreen](assets/homescreen.png)
 
+## Sections of the Homepage (entry screen)
+
+- Homepage - A simple UI made with HTML and CSS, and simple Javascript to make it interactive. THREE,js is used to create the middle section of this page. This page is to be the landing page of this Web Application.
+
+- mainarea-left - This is the left side of the Homepage, this has [unfinished]
+
+- mainarea-right - This is the right side of the Homepage, this has [unfinished]
+
+- mainarea-bottom - This is a text box which directly connects with an AI, whether it is a Local Model or a Remote Model connected via an API. 
+
+- mainarea-leftbottom - This is a text box at the bottom of 'mainarea-left' which acts as a wrapper for your selected type of terminal (Bash,CMD,Powershell,WSL,Git Bash,etc.) 
+
+
 ## Style
 
-## THE MIDDLE HOLOGRAM:
+### THE MIDDLE HOLOGRAM:
 
-### Here is the breakdown of every hex color code used in the rewritten script:
+#### Here is the breakdown of every hex color code used in the rewritten script:
 
 1. The Power Core (Center Element)
 
