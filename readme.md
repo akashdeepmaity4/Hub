@@ -6,20 +6,29 @@
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=githublogoColor=white)
 ![Flask](https://img.shields.io/badge/flask-%3b1ea7.svg?style=for-the-badge&logo=flask&logoColor=white) 
 
-## Description
+## Description:
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Version](https://img.shields.io/badge/version-1.0.0-brightgreen)
 
-HUB is a simple GUI for some of the most commonly used free well-known websites and apps i use.
+HUB is a simple interactive Web Application which is to be used as the one-stop-shop for some of the most common, useful and free PWAs, Applications and Tools. This is just a hobby project, thus this is still in development and will be updated frequently. A complete Design overhaul is planned to be released in the future version v2.0.0.
 
-## Sections of the Application 
 
-- Homepage - A simple UI made with HTML and CSS, and simple Javascript to make it interactive. THREE,js is used to create the middle section of this page. This page is to be the landing page of this Web Application.
+![homescreen](assets/homescreen.png)
 
-- mainarea-left - This is the left side of the Homepage, this has [unfinished]
+## How to use:
 
-- mainarea-right - This is the right side of the Homepage, this has [unfinished]
+### Way 1: (recommended for most users)
 
-- mainarea-bottom - This is a text box which directly connects with an AI, whether it is a Local Model or a Remote Model connected via an API. 
+1. Download the latest release from [Releases](https://github.com/akashdeepmaity4/hub/releases) 
+1. Select the most recent release from the list and download it.
+1. Extract the downloaded file and run the executable application.
 
-- mainarea-leftbottom - This is a text box at the bottom of 'mainarea-left' which acts as a wrapper for your selected type of terminal (Bash,CMD,Powershell,WSL,Git Bash,etc.) 
+### Way 2: (Recommended for maximum customization)
+
+1. Clone the repository
+1. Go to root directory of the project and look for 'app.py' file.
+1. Run the following command in your desired terminal (Bash, Powershell, CMD,WSL, etc)
+```bash
+cd path/to/root/directory
+python app.py
+```

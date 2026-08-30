@@ -6,6 +6,7 @@ This document is to be treated as the final truth about this project.
 
 ![homescreen](assets/homescreen.png)
 
+
 ## Sections of the Homepage (entry screen)
 
 - Homepage - A simple UI made with HTML and CSS, and simple Javascript to make it interactive. THREE,js is used to create the middle section of this page. This page is to be the landing page of this Web Application.
